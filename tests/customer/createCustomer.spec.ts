@@ -9,8 +9,10 @@ test.describe.serial('Create customer', () => {
 	test('it should create a new customer successfully', async ({ apiContext }) => {
 		const customerData: customer = buildFakeCustomer();
 		const createCustomerResponse: APIResponse = await customerRequests.createCustomer(apiContext, customerData);
+		const createCustomerResponseData = await createCustomerResponse.json();
 
 		expect(createCustomerResponse.ok()).toBeTruthy();
+		expect(createCustomerResponseData).toEqual(expect.objectContaining({ customerId: expect.any(Number) }));
 	});
 
 	test('it should return an error when username is already in use', async ({ apiContext, createCustomer }) => {
