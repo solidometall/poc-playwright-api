@@ -18,7 +18,6 @@ test.describe.serial('Create customer', () => {
 	test('it should return an error when username is already in use', async ({ apiContext, createCustomer }) => {
 		const errorMsg: RegExp = errorMessages.customer.create.alreadyExists;
 		const customerId: number = await parseCustomerIdFromResponse(createCustomer);
-		await delay(1100);
 		const existingCustomerUsername: string = await parseCustomerUsernameFromResponse(await customerRequests.searchCustomerById(apiContext, customerId));
 
 		const newCustomerData: customer = buildFakeCustomer();
