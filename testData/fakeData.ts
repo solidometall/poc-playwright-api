@@ -1,16 +1,5 @@
 import { currentTimestamp } from '../utils/generalFunctions';
-
-export type customer = {
-	customerId?: number,
-	name: string,
-	address: string,
-	email: string,
-	phone: string,
-	username: string,
-	password: string,
-	enabled: boolean,
-	role: string,
-};
+import { customer } from '../utils/types';
 
 export function buildFakeCustomer(): customer {
 	const id: number = currentTimestamp();

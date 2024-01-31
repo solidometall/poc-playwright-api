@@ -2,9 +2,10 @@ import { APIRequestContext, APIResponse, request, expect, test as base } from '@
 import { CONFIG } from '../variables.config';
 import customerRequests from '../requests/customer/customerRequests';
 import { parseCustomerIdFromResponse } from '../utils/generalFunctions';
-import { buildFakeCustomer, customer } from '../testData/userData';
+import { buildFakeCustomer } from '../testData/fakeData';
+import { customer } from '../utils/types';
 
-// declare the types of your fixtures.
+// declare the types of your fixtures
 interface MyFixtures {
 	apiContext: APIRequestContext;
 	createCustomer: APIResponse;
@@ -25,10 +26,13 @@ export const test = base.extend<MyFixtures>({
 
 		// Use the fixture value in the test
 		await use(apiContext);
+
+		// Clean up the fixture
+		await apiContext.dispose();
 	},
 
 	// create customer returning its ID, then delete it (teardown)
-	createCustomer: async ({ apiContext}, use) => {
+	createCustomer: async ({ apiContext }, use) => {
 		// Set up the fixture
 		const customerData: customer = buildFakeCustomer();
 		const response: APIResponse = await customerRequests.createCustomer(apiContext, customerData);

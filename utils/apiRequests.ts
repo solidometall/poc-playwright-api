@@ -8,7 +8,9 @@ export async function executeRequest(
 ): Promise<APIResponse> {
 	try {
 		// @ts-expect-error
-		const response: APIResponse = await apiContext[method](requestUrl, { data: requestOptions });
+		const response: APIResponse = await apiContext[method](requestUrl, {
+			data: requestOptions,
+		});
 		const responseCode: number = response.status();
 		const responseOk: boolean = response.ok();
 
