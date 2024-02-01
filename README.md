@@ -1,6 +1,6 @@
 # POC Playwright API
 
-# This automation project describes API tests implementing Playwright with Typescript.
+## This automation project describes API tests implementing Playwright with Typescript.
 - the demo site used is [atsea-sample-shop-app](https://github.com/dockersamples/atsea-sample-shop-app/).
 - docker, docker-compose and Node.js are needed.
 
@@ -27,9 +27,3 @@ Next, you will need to run the docker compose file to create a simplified develo
 Then you can run tests executing the command:
 
 `npm run test`
-
-### Debug mode
-
-First, set some breakpoints in the code, and then execute the command:
-
-`npm run debug`
