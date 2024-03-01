@@ -41,7 +41,7 @@ services:
       - BASE_API_URL=http://atsea:8080
     depends_on:
       - appserver
-    command: sh -c "sleep 14 && npm run test"
+    command: bash -c 'while [[ "$$(curl --connect-timeout 2 -s -o /dev/null -w ''%{http_code}'' http://atsea:8080/api/product/)" != "200" ]]; do echo ..; sleep 5; done; echo backend is up; xvfb-run npm run test'
     networks:
       - front-tier
 
