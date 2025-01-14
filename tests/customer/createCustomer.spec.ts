@@ -12,8 +12,8 @@ test.describe.serial('Create customer', () => {
 		const createCustomerResponse: APIResponse = await customerRequests.createCustomer(apiContext, customerData);
 		const createCustomerResponseData = await createCustomerResponse.json();
 
-		expect(createCustomerResponse.ok()).toBeTruthy();
-		expect(createCustomerResponseData).toEqual(expect.objectContaining({ customerId: expect.any(Number) }));
+		expect.soft(createCustomerResponse.ok()).toBeTruthy();
+		expect.soft(createCustomerResponseData).toEqual(expect.objectContaining({ customerId: expect.any(Number) }));
 	});
 
 	test('it should return an error when username is already in use', async ({ apiContext, createCustomer }) => {
@@ -27,7 +27,7 @@ test.describe.serial('Create customer', () => {
 		const newCustomerResponse: APIResponse = await customerRequests.createCustomer(apiContext, newCustomerData);
 		const newCustomerResponseData = await newCustomerResponse.json();
 
-		expect(newCustomerResponseData.errorMessage).toMatch(errorMessages.customer.create.alreadyExists);
-		expect(newCustomerResponse.ok()).toBeFalsy();
+		expect.soft(newCustomerResponse.ok()).toBeFalsy();
+		expect.soft(newCustomerResponseData.errorMessage).toMatch(errorMessages.customer.create.alreadyExists);
 	});
 });
